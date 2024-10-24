@@ -8,7 +8,7 @@ pipeline {
     stage('Git Checkout') {
       steps {
         echo 'This stage is to clone the repo from github'
-        git branch: 'master', url: 'https://github.com/pranalij722/Healthcare-Project.git'
+        git branch: 'master', url: 'git 'https://github.com/pranalij722/Healthcare-Project.git'
                         }
             }
     stage('Create Package') {
@@ -20,7 +20,7 @@ pipeline {
     stage('Generate Test Report') {
       steps {
         echo 'This stage generate Test report using TestNG'
-        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/Healthcare/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+       publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/usr/lib/jvm/java-17-amazon-corretto.x86_64', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
                           }
             }
      stage('Create Docker Image') {
@@ -32,7 +32,7 @@ pipeline {
      stage('Login to Dockerhub') {
       steps {
         echo 'This stage will loginto Dockerhub' 
-       withCredentials([usernamePassword(credentialsId: 'docker-login', passwordVariable: 'docker-pass', usernameVariable: 'docker-login')])  {
+      withCredentials([usernamePassword(credentialsId: '2ba94ea7-ff9f-4a13-8d68-0c60bcf674de', passwordVariable: 'docker-pass', usernameVariable: 'docker-login')]) {
         sh 'dokcer-login -u ${docker-login} -p ${docker-pass}'
             }
          }
@@ -45,7 +45,7 @@ pipeline {
       }
     stage('AWS-Login') {
       steps {
-        withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'Awsaccess', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')])  {
+        withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'Awsaccess', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
          }
       }
     }
