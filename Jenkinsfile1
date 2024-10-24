@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage('checkout the code from github'){
             steps{
-                 git url: 'https://github.com/pranalij722/star-agile-health-care/'
+                 git url: 'https://github.com/pranalij722/Healthcare-Project.git/'
                  echo 'github url checkout'
             }
         }
